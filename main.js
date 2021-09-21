@@ -26,6 +26,12 @@ const configuration = {
       size: 100,
     },
   ],
+  memoryPartitions: [
+    { partitionName: "SO", size: 100 },
+    { partitionName: "Big", size: 250 },
+    { partitionName: "Medium", size: 120 },
+    { partitionName: "Small", size: 60 },
+  ],
 };
 
 switch (configuration.algorithm) {
