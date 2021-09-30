@@ -46,9 +46,10 @@ const configuration = {
   ],
 };
 
+multiProg = "Aca la cantidad de niveles";
 switch (configuration.algorithm) {
   case "SRTF":
-    runSRTF(configuration);
+    runSRTF(configuration, multiProg);
     break;
   default:
     break;
