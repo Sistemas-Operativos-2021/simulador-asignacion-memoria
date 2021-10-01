@@ -1,8 +1,10 @@
 import { sortObjectArray } from "../utils/sortObjectArray.js";
 import { sortProcessesArrayByTA } from "../utils/sortProcessesArrayByTA.js";
 
+const checkIfMemoryIsFull = () => {};
+
 export const runSRTF = (configuration) => {
-  const { so_size, total_mem } = configuration.specs;
+  const { memoryPartitions } = configuration;
 
   const gant = [];
   // Vamos a ordenar los procesos por tiempo de arribo.
@@ -11,18 +13,28 @@ export const runSRTF = (configuration) => {
     0
   );
 
-  const processesArraySortedByTA = sortProcessesArrayByTA(
-    configuration.process
-  );
+  // We sort the entire processes list by arrived time.
+  const processes = sortProcessesArrayByTA(configuration.process);
 
   // Building the gant digram.
+  let newProcessesQueue = [];
+  let readyProcessesQueue = [];
+  let suspendedProcessesQueue = [];
 
-  const readyQueue = JSON.parse(JSON.stringify(processesArraySortedByTA));
+  // const readyQueue = JSON.parse(JSON.stringify(processesArraySortedByTA));
 
   for (let currentClock = 0; currentClock < totalClock; currentClock++) {
-    const processesWhichHaveArrived = readyQueue.filter(
-      (process) => process.arrival_time <= currentClock
+    // Check If Exist An Arrived Process at currentClock
+    const processesWhichHaveArrived = processes.filter(
+      (process) => process.arrival_time === currentClock
     );
+    newProcessesQueue = [...newProcessesQueue, processesWhichHaveArrived];
+
+    newProcessesQueue.forEach((newProcess) => {});
+
+    // const processesWhichHaveArrived = processes.filter(
+    //   (process) => process.arrival_time <= currentClock
+    // );
 
     const shortestIT = sortObjectArray(
       processesWhichHaveArrived,
