@@ -1,11 +1,11 @@
 import { sortObjectArray } from "../utils/sortObjectArray.js";
 import { sortProcessesArrayByTA } from "../utils/sortProcessesArrayByTA.js";
 
-const checkIfMemoryIsFull = () => {};
-
 export const runSRTF = (configuration) => {
   const { memoryPartitions } = configuration;
-
+  const memoryPartitionsSortedBySize = JSON.parse(
+    JSON.stringify(sortObjectArray(memoryPartitions, "size"))
+  );
   const gant = [];
   // Vamos a ordenar los procesos por tiempo de arribo.
   const totalClock = configuration.process.reduce(
@@ -23,6 +23,17 @@ export const runSRTF = (configuration) => {
 
   // const readyQueue = JSON.parse(JSON.stringify(processesArraySortedByTA));
 
+  const currentMemoryMonitor = JSON.parse(
+    JSON.stringify(memoryPartitionsSortedBySize)
+  );
+
+  let executingProcess = {
+    id: null,
+    arrival_time: null,
+    irruption_time: null,
+    size: null,
+  };
+
   for (let currentClock = 0; currentClock < totalClock; currentClock++) {
     // Check If Exist An Arrived Process at currentClock
     const processesWhichHaveArrived = processes.filter(
@@ -30,20 +41,42 @@ export const runSRTF = (configuration) => {
     );
     newProcessesQueue = [...newProcessesQueue, processesWhichHaveArrived];
 
-    newProcessesQueue.forEach((newProcess) => {});
+    // Check if there is free space into RAM.
+    // If there is free space move the process to ReadyQueue
+    // If there in no free space stay into new processes queue.
+    newProcessesQueue.forEach((newProcess) => {
+      const memoryPartitionsAvailable = currentMemoryMonitor.filter(
+        (freePartition) => !freePartition.isInUse
+      );
+      memoryPartitionsAvailable.forEach((partition, index) => {
+        if (partition.size >= newProcess.size) {
+          // If there is some process executing then push to ready queue because the CPU is in use
+          if (executingProcess.id) {
+            readyProcessesQueue.push(newProcess);
+          } else {
+            executingProcess = JSON.parse(JSON.parse(newProcess));
+          }
 
-    // const processesWhichHaveArrived = processes.filter(
-    //   (process) => process.arrival_time <= currentClock
-    // );
+          currentMemoryMonitor[index].isInUse = true;
+          currentMemoryMonitor[index].idProcess = newProcess.id;
+        }
+      });
+    });
 
-    const shortestIT = sortObjectArray(
-      processesWhichHaveArrived,
+    const shortestITReadyQueue = sortObjectArray(
+      readyProcessesQueue,
       "irruption_time"
     )[0];
 
-    const shortestITIndex = readyQueue.findIndex(
-      (processIntoQueue) => processIntoQueue.id === shortestIT.id
+    const shortestIT =
+      shortestITReadyQueue[0].irruption_time < executingProcess.irruption_time
+        ? shortestITReadyQueue[0]
+        : executingProcess;
+
+    const shortestITIndex = currentMemoryMonitor.findIndex(
+      (processIntoQueue) => processIntoQueue.idProcess === shortestIT.id
     );
+
     gant.push(JSON.parse(JSON.stringify(shortestIT)));
 
     console.log("-".repeat(100));
@@ -52,40 +85,11 @@ export const runSRTF = (configuration) => {
     console.table(readyQueue);
     console.table(gant);
     console.log("-".repeat(100));
-    readyQueue[shortestITIndex].irruption_time =
-      readyQueue[shortestITIndex].irruption_time - 1;
+    currentMemoryMonitor[shortestITIndex].irruption_time =
+      currentMemoryMonitor[shortestITIndex].irruption_time - 1;
 
-    if (readyQueue[shortestITIndex].irruption_time === 0) {
-      readyQueue.splice(shortestITIndex, 1);
+    if (currentMemoryMonitor[shortestITIndex].irruption_time === 0) {
+      currentMemoryMonitor[shortestITIndex].idProcess = null;
     }
   }
-
-  // De acuerdo al gant resultante vamos a iterarlo para la
-  // asignacion de la memoria.
-  // const partitions = [];
-
-  // let free_mem = total_mem - so_size;
-  // try {
-  //   gant.forEach((process, index) => {
-  //     if (free_mem >= process.size) {
-  //       free_mem -= process.size;
-
-  //       const last_end_address =
-  //         index > 0 ? partitions[index - 1].address_end : so_size;
-  //       partitions.push({
-  //         process_id: process.id,
-  //         size_partition: process.size,
-  //         address_initial: last_end_address + 1,
-  //         address_end: last_end_address + process.size,
-  //       });
-  //       console.log("Time", index);
-  //       console.table(partitions);
-  //       if (index + 1 !== gant.length) console.log("-".repeat(100));
-  //     } else {
-  //       throw new Error(`Error de direccionamiento con proceso: ${process.id}`);
-  //     }
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
 };

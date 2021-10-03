@@ -39,9 +39,9 @@ const configuration = {
     },
   ],
   memoryPartitions: [
-    { partitionName: "Big", size: 250 },
-    { partitionName: "Medium", size: 120 },
-    { partitionName: "Small", size: 60 },
+    { partitionName: "Big", size: 250, isInUse: false, idProcess: null },
+    { partitionName: "Medium", size: 120, isInUse: false, idProcess: null },
+    { partitionName: "Small", size: 60, isInUse: false, idProcess: null },
   ],
 };
 
