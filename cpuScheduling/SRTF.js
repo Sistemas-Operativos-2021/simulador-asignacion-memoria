@@ -1,95 +1,128 @@
-import { sortObjectArray } from "../utils/sortObjectArray.js";
-import { sortProcessesArrayByTA } from "../utils/sortProcessesArrayByTA.js";
+import bestFitPartition from "../utils/bestFit.js";
+import sortObjectArray from "../utils/sortObjectArray.js";
+import sortProcessesArrayByTA from "../utils/sortProcessesArrayByTA.js";
+
+const initialRunningState = {
+  id: null,
+  arrival_time: null,
+  irruption_time: null,
+  size: null,
+}
+
 
 export const runSRTF = (configuration) => {
-  const { memoryPartitions } = configuration;
-  const memoryPartitionsSortedBySize = JSON.parse(
-    JSON.stringify(sortObjectArray(memoryPartitions, "size"))
-  );
-  const gant = [];
-  // Vamos a ordenar los procesos por tiempo de arribo.
-  const totalClock = configuration.process.reduce(
+
+  const processesOrderedByTA = sortProcessesArrayByTA(configuration.processes)
+  const totalClock = processesOrderedByTA.reduce(
     (acc, current) => acc + current.irruption_time,
     0
   );
+  const memory = [...configuration.memoryPartitions]
 
-  // We sort the entire processes list by arrived time.
-  const processes = sortProcessesArrayByTA(configuration.process);
-
-  // Building the gant digram.
-  let newProcessesQueue = [];
-  let readyProcessesQueue = [];
-  let suspendedProcessesQueue = [];
-
-  // const readyQueue = JSON.parse(JSON.stringify(processesArraySortedByTA));
-
-  const currentMemoryMonitor = JSON.parse(
-    JSON.stringify(memoryPartitionsSortedBySize)
-  );
-
-  let executingProcess = {
+  const readyState = []
+  const readySuspendState = []
+  const finishState = []
+  const gant = []
+  let runningState = {
     id: null,
     arrival_time: null,
     irruption_time: null,
     size: null,
-  };
+  }
 
-  for (let currentClock = 0; currentClock < totalClock; currentClock++) {
-    // Check If Exist An Arrived Process at currentClock
-    const processesWhichHaveArrived = processes.filter(
-      (process) => process.arrival_time === currentClock
-    );
-    newProcessesQueue = [...newProcessesQueue, processesWhichHaveArrived];
+  for (let clock = 0; clock < totalClock; clock++) {
 
-    // Check if there is free space into RAM.
-    // If there is free space move the process to ReadyQueue
-    // If there in no free space stay into new processes queue.
-    newProcessesQueue.forEach((newProcess) => {
-      const memoryPartitionsAvailable = currentMemoryMonitor.filter(
-        (freePartition) => !freePartition.isInUse
-      );
-      memoryPartitionsAvailable.forEach((partition, index) => {
-        if (partition.size >= newProcess.size) {
-          // If there is some process executing then push to ready queue because the CPU is in use
-          if (executingProcess.id) {
-            readyProcessesQueue.push(newProcess);
-          } else {
-            executingProcess = JSON.parse(JSON.parse(newProcess));
-          }
+    // In this line I have the new state according to the arrival time.
+    const newState = configuration.processes.filter(process => process.arrival_time === clock)
+    // If there is some free space, we will check newState and readySuspendState 
+    if (memory.some(partition => !partition.isInUse)) {
 
-          currentMemoryMonitor[index].isInUse = true;
-          currentMemoryMonitor[index].idProcess = newProcess.id;
+      // ReadySuspendState treatment: I have to check if I have free space in the RAM.
+      // If I don't have enough space I will do nothing
+      // Otherwise, readyState
+      const indexOfProcessesToRemoveIntoReadySuspendState = []
+      readySuspendState.forEach(process => {
+        const { memoryIndex, processId } = bestFitPartition(memory, process)
+        if (memoryIndex !== -1) {
+          memory[memoryIndex].isInUse = !memory[memoryIndex].isInUse
+          memory[memoryIndex].usedSpace = memory[memoryIndex].usedSpace - process.size
+          memory[memoryIndex].idProcess = process.id
+          readyState.push(process)
+          const processIndexIntoReadySuspendState = readySuspendState.findIndex(process => process.id === processId)
+          indexOfProcessesToRemoveIntoReadySuspendState.push(processIndexIntoReadySuspendState)
         }
-      });
-    });
+      })
+      indexOfProcessesToRemoveIntoReadySuspendState.forEach(processIndex => readySuspendState.splice(processIndex, 1))
 
-    const shortestITReadyQueue = sortObjectArray(
-      readyProcessesQueue,
+
+      // NewState treatment: I have to check if I have free space in the RAM.
+      // If I don't have enough space I will send the process to ReadySuspendState
+      // Otherwise, readyState
+      const indexOfProcessesToRemoveIntoNewState = []
+      newState.forEach(process => {
+        const { memoryIndex, processId } = bestFitPartition(memory, process)
+
+        if (memoryIndex !== -1) {
+          memory[memoryIndex].isInUse = !memory[memoryIndex].isInUse
+          memory[memoryIndex].usedSpace = memory[memoryIndex].usedSpace - process.size
+          memory[memoryIndex].idProcess = process.id
+          readyState.push(process)
+          const processIndexIntoNewState = newState.findIndex(process => process.id === processId)
+          indexOfProcessesToRemoveIntoNewState.push(processIndexIntoNewState)
+        } else {
+          readySuspendState.push(process)
+        }
+      })
+      indexOfProcessesToRemoveIntoNewState.forEach(processIndex => newState.splice(processIndex, 1))
+    }
+
+    // Ready State treatment.
+
+    const shortestITIntoReadyState = sortObjectArray(
+      readyState,
       "irruption_time"
     )[0];
 
-    const shortestIT =
-      shortestITReadyQueue[0].irruption_time < executingProcess.irruption_time
-        ? shortestITReadyQueue[0]
-        : executingProcess;
+    // Compare irruption time between Running State and Ready State
+    let shortestIT
+    if (!runningState.id) {
+      shortestIT = shortestITIntoReadyState
 
-    const shortestITIndex = currentMemoryMonitor.findIndex(
-      (processIntoQueue) => processIntoQueue.idProcess === shortestIT.id
-    );
+      const runningStateIndexIntoReadyState = readyState.findIndex(process => process.id === shortestIT.id)
+      if (runningStateIndexIntoReadyState !== -1) {
+        readyState.splice(runningStateIndexIntoReadyState, 1)
+      }
 
-    gant.push(JSON.parse(JSON.stringify(shortestIT)));
+    } else if (shortestITIntoReadyState?.irruption_time < runningState.irruption_time) {
+      shortestIT = shortestITReadyState
+      const runningStateIndexIntoReadyState = readyState.findIndex(process => process.id === shortestIT.id)
+      if (runningStateIndexIntoReadyState !== -1) {
+        readyState.splice(runningStateIndexIntoReadyState, 1)
+      }
+    } else {
+      shortestIT = runningState
+    }
 
-    console.log("-".repeat(100));
 
-    console.log("Time", currentClock);
-    console.table(readyQueue);
-    console.table(gant);
-    console.log("-".repeat(100));
-    currentMemoryMonitor[shortestITIndex].irruption_time =
-      currentMemoryMonitor[shortestITIndex].irruption_time - 1;
+    runningState = shortestIT
+    console.log({ totalClock, clock, newState, readySuspendState, readyState, memory, runningState, gant })
+    gant.push(shortestIT);
 
-    if (currentMemoryMonitor[shortestITIndex].irruption_time === 0) {
-      currentMemoryMonitor[shortestITIndex].idProcess = null;
+    runningState.irruption_time = runningState.irruption_time - 1
+
+
+
+
+
+
+    if (runningState.irruption_time === 0) {
+      finishState.push(runningState)
+      const runningStateIndexIntoMemory = memory.findIndex(partition => partition.idProcess === runningState.id)
+      memory[runningStateIndexIntoMemory].idProcess = null;
+      memory[runningStateIndexIntoMemory].isInUse = false;
+      memory[runningStateIndexIntoMemory].usedSpace = memory[runningStateIndexIntoMemory].size;
+      runningState = initialRunningState
+
     }
   }
 };

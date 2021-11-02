@@ -1,0 +1,960 @@
+{
+  totalClock: 22,
+  clock: 0,
+  newState: [ { id: 2, arrival_time: 0, irruption_time: 2, size: 100 } ],
+  readySuspendState: [ { id: 3, arrival_time: 0, irruption_time: 1, size: 100 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: -100,
+      size: 250,
+      isInUse: true,
+      idProcess: 2
+    }
+  ],
+  runningState: { id: 2, arrival_time: 0, irruption_time: 2, size: 100 },
+  gant: []
+}
+{
+  totalClock: 22,
+  clock: 1,
+  newState: [ { id: 4, arrival_time: 1, irruption_time: 5, size: 150 } ],
+  readySuspendState: [
+    { id: 3, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 5, size: 150 }
+  ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: -100,
+      size: 250,
+      isInUse: true,
+      idProcess: 2
+    }
+  ],
+  runningState: { id: 2, arrival_time: 0, irruption_time: 1, size: 100 },
+  gant: [ { id: 2, arrival_time: 0, irruption_time: 1, size: 100 } ]
+}
+{
+  totalClock: 22,
+  clock: 2,
+  newState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readySuspendState: [
+    { id: 4, arrival_time: 1, irruption_time: 5, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 4, size: 250 }
+  ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 150,
+      size: 250,
+      isInUse: true,
+      idProcess: 3
+    }
+  ],
+  runningState: { id: 3, arrival_time: 0, irruption_time: 1, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 3,
+  newState: [],
+  readySuspendState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 100,
+      size: 250,
+      isInUse: true,
+      idProcess: 4
+    }
+  ],
+  runningState: { id: 4, arrival_time: 1, irruption_time: 5, size: 150 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 4,
+  newState: [],
+  readySuspendState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 100,
+      size: 250,
+      isInUse: true,
+      idProcess: 4
+    }
+  ],
+  runningState: { id: 4, arrival_time: 1, irruption_time: 4, size: 150 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 4, size: 150 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 5,
+  newState: [],
+  readySuspendState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 100,
+      size: 250,
+      isInUse: true,
+      idProcess: 4
+    }
+  ],
+  runningState: { id: 4, arrival_time: 1, irruption_time: 3, size: 150 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 3, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 3, size: 150 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 6,
+  newState: [],
+  readySuspendState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 100,
+      size: 250,
+      isInUse: true,
+      idProcess: 4
+    }
+  ],
+  runningState: { id: 4, arrival_time: 1, irruption_time: 2, size: 150 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 2, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 2, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 2, size: 150 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 7,
+  newState: [],
+  readySuspendState: [ { id: 5, arrival_time: 2, irruption_time: 4, size: 250 } ],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 100,
+      size: 250,
+      isInUse: true,
+      idProcess: 4
+    }
+  ],
+  runningState: { id: 4, arrival_time: 1, irruption_time: 1, size: 150 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 1, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 1, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 1, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 1, size: 150 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 8,
+  newState: [],
+  readySuspendState: [],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 0,
+      size: 250,
+      isInUse: true,
+      idProcess: 5
+    }
+  ],
+  runningState: { id: 5, arrival_time: 2, irruption_time: 4, size: 250 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 9,
+  newState: [],
+  readySuspendState: [],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 0,
+      size: 250,
+      isInUse: true,
+      idProcess: 5
+    }
+  ],
+  runningState: { id: 5, arrival_time: 2, irruption_time: 3, size: 250 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 3, size: 250 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 10,
+  newState: [],
+  readySuspendState: [],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 0,
+      size: 250,
+      isInUse: true,
+      idProcess: 5
+    }
+  ],
+  runningState: { id: 5, arrival_time: 2, irruption_time: 2, size: 250 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 2, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 2, size: 250 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 11,
+  newState: [],
+  readySuspendState: [],
+  readyState: [ { id: 1, arrival_time: 0, irruption_time: 10, size: 100 } ],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 0,
+      size: 250,
+      isInUse: true,
+      idProcess: 5
+    }
+  ],
+  runningState: { id: 5, arrival_time: 2, irruption_time: 1, size: 250 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 1, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 1, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 1, size: 250 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 12,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 10, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 13,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 9, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 9, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 14,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 8, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 8, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 8, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 15,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 7, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 7, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 7, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 7, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 16,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 6, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 6, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 6, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 6, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 6, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 17,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 5, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 5, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 5, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 5, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 5, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 5, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 18,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 4, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 19,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 3, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 20,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 2, size: 100 }
+  ]
+}
+{
+  totalClock: 22,
+  clock: 21,
+  newState: [],
+  readySuspendState: [],
+  readyState: [],
+  memory: [
+    {
+      partitionName: 'Small',
+      usedSpace: 0,
+      size: 60,
+      isInUse: false,
+      idProcess: null
+    },
+    {
+      partitionName: 'Medium',
+      usedSpace: -100,
+      size: 120,
+      isInUse: true,
+      idProcess: 1
+    },
+    {
+      partitionName: 'Big',
+      usedSpace: 250,
+      size: 250,
+      isInUse: false,
+      idProcess: null
+    }
+  ],
+  runningState: { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+  gant: [
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 2, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 3, arrival_time: 0, irruption_time: 0, size: 100 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 4, arrival_time: 1, irruption_time: 0, size: 150 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 5, arrival_time: 2, irruption_time: 0, size: 250 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 },
+    { id: 1, arrival_time: 0, irruption_time: 1, size: 100 }
+  ]
+}

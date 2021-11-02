@@ -6,7 +6,7 @@ const configuration = {
     total_mem: 800,
   },
   algorithm: "SRTF",
-  process: [
+  processes: [
     {
       id: 1,
       arrival_time: 0,
@@ -39,9 +39,9 @@ const configuration = {
     },
   ],
   memoryPartitions: [
-    { partitionName: "Big", size: 250, isInUse: false, idProcess: null },
-    { partitionName: "Medium", size: 120, isInUse: false, idProcess: null },
-    { partitionName: "Small", size: 60, isInUse: false, idProcess: null },
+    { partitionName: "Small", usedSpace: 0, size: 60, isInUse: false, idProcess: null },
+    { partitionName: "Medium", usedSpace: 0, size: 120, isInUse: false, idProcess: null },
+    { partitionName: "Big", usedSpace: 0, size: 250, isInUse: false, idProcess: null },
   ],
 };
 

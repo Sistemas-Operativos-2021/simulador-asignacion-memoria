@@ -1,4 +1,4 @@
-export const sortObjectArray = (processesArray, field) =>
+const sortObjectArray = (processesArray, field) =>
   processesArray.sort((a, b) => {
     if (a[field] < b[field]) {
       return -1;
@@ -8,3 +8,5 @@ export const sortObjectArray = (processesArray, field) =>
     }
     return 0;
   });
+
+export default sortObjectArray
